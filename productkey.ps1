@@ -1,16 +1,4 @@
-﻿#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\Current Version
-$WinDigitalProductID = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name "DigitalProductId").DigitalProductId
-#$WinDigitalProductID | Format-Hex
-$WinProdKey = DecodeProdKey($WinDigitalProductID)
-
-#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Registration
-$IEDigitalProductID = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Internet Explorer\Registration" -Name "DigitalProductId").DigitalProductId
-#$IEDigitalProductID | Format-Hex
-$IEProdKey = DecodeProdKey($IEDigitalProductID)
-$wshell = New-Object -ComObject Wscript.Shell
-$wshell.Popup($WinProdKey + "`n" + $IEProdKey,0,"Windows Product Key (Ctrl-c to Copy)",0x1)
-
-function DecodeProdKey {
+﻿function DecodeProdKey {
     Param(
         [parameter(Mandatory=$true)]
         [Byte[]] 
@@ -40,3 +28,14 @@ function DecodeProdKey {
     return $KeyOutput
 }
 
+#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\Current Version
+$WinDigitalProductID = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" -Name "DigitalProductId").DigitalProductId
+#$WinDigitalProductID | Format-Hex
+$WinProdKey = DecodeProdKey($WinDigitalProductID)
+
+#HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Internet Explorer\Registration
+$IEDigitalProductID = (Get-ItemProperty -Path "HKLM:\SOFTWARE\Microsoft\Internet Explorer\Registration" -Name "DigitalProductId").DigitalProductId
+#$IEDigitalProductID | Format-Hex
+$IEProdKey = DecodeProdKey($IEDigitalProductID)
+$wshell = New-Object -ComObject Wscript.Shell
+$wshell.Popup($WinProdKey + "`n" + $IEProdKey,0,"Windows Product Key (Ctrl-c to Copy)",0x1)
