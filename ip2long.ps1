@@ -48,13 +48,13 @@ function long2ip {
     return $ipconv
 }
 
-#($ip,$prefix) = cidr2ip("192.168.1.0/29")
-#$longip = ip2long($ip)
-#$longip += 512
-#$ipAddr = long2ip($longip) 
-#$ipAddr = $ipAddr -join '.'
-#$ipAddr += '/' + $prefix
-#$ipAddr
+($ip,$prefix) = cidr2ip("192.168.1.0/24")
+$longip = ip2long($ip)
+$longip += 512
+$ipAddr = long2ip($longip) 
+$ipAddr = $ipAddr -join '.'
+$ipAddr += '/' + $prefix
+$ipAddr
 
 #for ($i = 0; $i -lt $ipbyte.Count; $i++) {
 #    $ipbyte[$i]
